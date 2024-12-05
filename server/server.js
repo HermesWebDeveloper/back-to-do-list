@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const PORT = 10000;
 const tarefas = require('../routes/tarefas');
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
     res.send('Olá, Mundo!');
