@@ -3,6 +3,10 @@ const app = express();
 const PORT = 10000;
 const tarefas = require('../routes/tarefas');
 const bodyParser = require('body-parser');
+const cors = require('cors');
+
+// Configurando o cors
+app.use(cors());
 
 app.use(bodyParser.json());
 

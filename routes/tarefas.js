@@ -30,14 +30,16 @@ router.put('/:id', async (req, res) => {
         const tarefa = await Tarefa.findByPk(req.params.id); 
         if (!(tarefa)) return res.status(500).send('Tarefa não encontrada!');
 
-        if (descricao) tarefa.descricao = descricao;
-        if (checked) tarefa.checked = checked;
+        // Atualizar os campos apenas se eles forem enviados
+        if (descricao !== undefined) tarefa.descricao = descricao;
+        if (checked !== undefined) tarefa.checked = checked;
 
+        // Salvar a tarefa atualizada
         await tarefa.save();
         
         res.status(201).json(tarefa);
     } catch (error) {
-        console.status(500).error('Erro ao atualizar tarefa: ', error);
+        console.error('Erro ao atualizar tarefa: ', error);
     }
 })
 
